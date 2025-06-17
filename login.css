@@ -1,0 +1,141 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../images/login-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.75); /* Dark overlay for better text contrast */
+    z-index: -1;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    width: 380px;
+    text-align: center;
+    backdrop-filter: blur(2px); /* Optional blur effect */
+}
+
+/* Rest of your existing login.css styles remain the same */
+
+.login-header {
+    margin-bottom: 20px;
+}
+
+.login-header .logo {
+    height: 180px;
+    margin-bottom: 1px;
+}
+
+.login-header h2 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.user-type-selector {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.user-type-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.user-type-btn:first-child {
+    border-right: 1px solid #ddd;
+}
+
+.user-type-btn.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.login-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background-color: #2980b9;
+}
+
+.register-link {
+    margin-top: 20px;
+    color: #7f8c8d;
+}
+
+.register-link a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-size: 14px;
+    padding: 10px;
+    background-color: #fde8e8;
+    border-radius: 4px;
+}
