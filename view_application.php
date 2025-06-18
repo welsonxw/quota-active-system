@@ -1,20 +1,19 @@
 <?php
-include __DIR__ . '/includes/auth.php';
-include __DIR__ . '/includes/db.php';
-$statusFilter = isset($_GET['status']) ? $_GET['status'] : '';
-$kolejFilter = isset($_GET['kolej']) ? $_GET['kolej'] : '';
+// view_applications.php
+require_once __DIR__ . '/../includes/db.php';
+$statusFilter = $_GET['status'] ?? '';
+$kolejFilter = $_GET['kolej'] ?? '';
 
-$sql = "SELECT * FROM applications WHERE 1=1";
+$sql = "SELECT * FROM application WHERE 1=1";
 $params = [];
-if ($statusFilter) {
+if ($statusFilter !== '') {
     $sql .= " AND status = ?";
     $params[] = $statusFilter;
 }
-if ($kolejFilter) {
+if ($kolejFilter !== '') {
     $sql .= " AND college = ?";
     $params[] = $kolejFilter;
 }
-$sql .= " ORDER BY submitted_at DESC";
 $stmt = $conn->prepare($sql);
 if (!empty($params)) {
     $types = str_repeat('s', count($params));
@@ -23,15 +22,27 @@ if (!empty($params)) {
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student Applications</title>
+    <title>Quota System - View Applications</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Quota System Admin</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="dashboard.php">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link active" href="view_applications.php">View Applications</a></li>
+        <li class="nav-item"><a class="nav-link" href="rankings.php">Rankings</a></li>
+        <li class="nav-item"><a class="nav-link" href="edit_criteria.php">Edit Criteria</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <div class="container mt-4">
     <h2>Student Applications</h2>
     <form method="GET" class="row mb-4">
