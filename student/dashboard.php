@@ -23,6 +23,7 @@ $criteria = $criteriaStmt->fetchAll(PDO::FETCH_ASSOC);
 
 // List of colleges
 $colleges = ['KTC', 'KTDI', 'KRP', 'K9K10'];
+$cssFile ='style.css'; 
 ?>
 
 <!DOCTYPE html>
