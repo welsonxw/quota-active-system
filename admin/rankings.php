@@ -76,6 +76,14 @@ $female = $conn->query("SELECT * FROM application WHERE gender='female' AND stat
             </div>
         </div>
     </div>
+    <div style="text-align: center; margin-top: 30px;">
+    <form method="post" action="export_ranking.php">
+        <button type="submit" style="padding: 10px 20px; background-color: green; color: white; border: none; border-radius: 5px;">
+            Download CSV
+        </button>
+    </form>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

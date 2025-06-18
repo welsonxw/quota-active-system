@@ -58,7 +58,7 @@ if (!$data) {
     <tr><th>Year of Study</th><td><?= htmlspecialchars($data['year_of_study']) ?></td></tr>
     <tr><th>Gender</th><td><?= htmlspecialchars($data['gender']) ?></td></tr>
     <tr><th>Status</th><td><?= htmlspecialchars(ucfirst($data['status'])) ?></td></tr>
-    <tr><th>Merit Points</th><td><?= htmlspecialchars($data['merit_points']) ?></td></tr>
+    <tr><th>Merit Points</th><td><?= htmlspecialchars($data['merit']) ?></td></tr>
     <tr><th>Submitted At</th><td><?= htmlspecialchars($data['submitted_at']) ?></td></tr>
   </table>
   <form method="POST" onsubmit="return confirm('Are you sure?');">

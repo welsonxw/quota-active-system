@@ -1,5 +1,6 @@
 <?php
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'quota_db');
+define('DB_HOST', 'sql109.infinityfree.com');
+define('DB_USER', 'if0_39243507');
+define('DB_PASS', 'c1LHSD0tKFZp3Ye');
+define('DB_NAME', 'if0_39243507_quotaaktif');
+?>
