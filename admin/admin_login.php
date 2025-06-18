@@ -11,7 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($username === $default_username && $password === $default_password) {
         $_SESSION['admin_logged_in'] = true;
-        header("Location: dashboard.php");
+        header("Location: /quota_aktif/admin/dashboard.php");
+
         exit;
     } else {
         $message = '<div class="alert alert-danger" role="alert">Wrong credential, please try again.</div>';
@@ -90,12 +91,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+<div class="input-group">
+  <input type="password" class="form-control" id="password" name="password" required>
+  <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+    👁️
+  </button>
+</div>
             </div>
             <button type="submit" class="btn btn-custom">Login</button>
         </form>
         <p class="text-center mt-3 text-muted">Don't have an account? <a href="#" class="text-primary">Register as Admin</a></p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const toggleBtn = document.getElementById('togglePassword');
+  const passwordInput = document.getElementById('password');
+  const eyeIcon = document.getElementById('eyeIcon');
+
+  toggleBtn.addEventListener('click', function () {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+
+    // Optional: toggle icon if using Font Awesome
+    if (eyeIcon) {
+      eyeIcon.classList.toggle('fa-eye');
+      eyeIcon.classList.toggle('fa-eye-slash');
+    }
+  });
+</script>
+
 </body>
 </html>
