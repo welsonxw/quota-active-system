@@ -1,190 +1,52 @@
 /* Global Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8;
-    margin: 0;
-    padding: 20px;
-    color: #333;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 20px;
+  color: #333;
 }
 
-h2, h3 {
-    color: #2c3e50;
+h2,
+h3 {
+  color: #2c3e50;
 }
 
 a {
-    text-decoration: none;
-    color: #007bff;
+  text-decoration: none;
+  color: #007bff;
 }
 
 /* Grid Layout */
 .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto auto;
-    gap: 20px;
-    max-width: 1200px;
-    margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* Info Section */
 .info-section {
-    grid-row: 1 / span 2;
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  grid-row: 1 / span 2;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .info-section ul {
-    padding-left: 20px;
+  padding-left: 20px;
 }
 
 /* College & Status Sections */
 .college-section,
 .status-section {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* College Buttons */
-.college-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.college-buttons button {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 10px;
-    background-color: #3498db;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.college-buttons button:hover {
-    background-color: #2c80b4;
-}
-
-/* Status Styling */
-.status-section p {
-    margin: 8px 0;
-    font-size: 16px;
-}
-
-/*  */
-/* student/dashboard.php  */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', 'Inter', sans-serif;
-  background-color: #f5f7fa;
-  color: #2d3436;
-}
-
-/* Layout */
-.container {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 240px;
-  background-color: #1e272e;
-  color: #ffffff;
-  padding: 30px 24px;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
-}
-
-.sidebar h2 {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 40px;
-  color: #ffffff;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar li {
-  margin-bottom: 16px;
-  padding: 12px 18px;
-  border-radius: 10px;
-  transition: background 0.3s, color 0.3s;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 15px;
-}
-
-.sidebar li:hover,
-.sidebar li.active {
-  background-color: #2c3e50;
-  color: #ffffff;
-}
-
-/* Main */
-.main {
-  flex: 1;
-  padding: 40px 60px;
-}
-
-/* Header */
-.main-header h1 {
-  font-size: 30px;
-  font-weight: 700;
-  margin: 0 0 8px;
-}
-
-.main-header p {
-  color: #636e72;
-  font-size: 16px;
-}
-
-/* Grid Layout */
-.grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-  margin-top: 40px;
-}
-
-/* Cards */
-.card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-}
-
-.card h3 {
-  font-size: 20px;
-  margin: 0 0 20px;
-}
-
-/* Info */
-.info {
-  grid-row: 1 / span 2;
-}
-
-/* List */
-ul {
-  padding-left: 20px;
-  line-height: 1.8;
-  font-size: 15px;
-  color: #2f3640;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* College Buttons */
@@ -192,202 +54,28 @@ ul {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  margin-top: 10px;
 }
 
 .college-buttons button {
-  padding: 10px 22px;
-  background-color: #3b82f6;
-  color: #ffffff;
+  padding: 12px 24px;
   border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 14px;
+  border-radius: 10px;
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .college-buttons button:hover {
-  background-color: #2563eb;
+  background-color: #2c80b4;
 }
 
-/* Status */
-.status p {
+/* Status Styling */
+.status-section p {
   margin: 8px 0;
-  font-size: 15px;
-}
-
-.status strong.pending {
-  color: #f39c12;
+  font-size: 16px;
 }
 
 
-/*  */
-/* apply.php */
-/* Form Styles */
-.application-form {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
-}
-
-.application-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: #2c3e50;
-}
-
-.application-form input[type="text"],
-.application-form input[type="email"],
-.application-form input[type="file"],
-.application-form select,
-.application-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-}
-
-.application-form input[type="text"]:focus,
-.application-form input[type="email"]:focus,
-.application-form input[type="file"]:focus,
-.application-form select:focus,
-.application-form textarea:focus {
-    border-color: #3498db;
-    outline: none;
-}
-
-/* Radio Button Styling */
-.radio-group {
-    margin-bottom: 15px;
-}
-
-.radio-group label {
-    display: inline-block;
-    margin-right: 15px;
-    cursor: pointer;
-}
-
-.radio-group input[type="radio"] {
-    margin-right: 5px;
-}
-
-/* File Upload Styling */
-.file-upload {
-    padding: 15px;
-    border: 2px dashed #ddd;
-    border-radius: 8px;
-    text-align: center;
-    margin-bottom: 15px;
-    transition: border-color 0.3s ease;
-}
-
-.file-upload:hover {
-    border-color: #3498db;
-}
-
-/* Submit Button */
-.submit-btn {
-    background-color: #3498db;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-btn:hover {
-    background-color: #2c80b4;
-}
-
-/* Chatbot Styles */
-.chatbot-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    transition: all 0.3s ease;
-}
-
-.chatbot-btn:hover {
-    background-color: #2c80b4;
-    transform: scale(1.1);
-}
-
-.chatbot-container {
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    width: 350px;
-    height: 500px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    display: none;
-    flex-direction: column;
-}
-
-.chatbot-header {
-    padding: 15px;
-    background-color: #3498db;
-    color: white;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    font-weight: bold;
-}
-
-.chatbot-messages {
-    flex: 1;
-    padding: 15px;
-    overflow-y: auto;
-}
-
-.chatbot-input {
-    display: flex;
-    padding: 15px;
-    border-top: 1px solid #eee;
-}
-
-.chatbot-input input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    margin-right: 10px;
-}
-
-.chatbot-input button {
-    padding: 10px 15px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-.chatbot-input button:hover {
-    background-color: #2c80b4;
-}
-
-/*  */
-/* chatbot.php */
