@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/auth.php';
+require_once('../includes/auth.php');
 
 if (isLoggedIn()) {
     if (isAdmin()) {
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $pageTitle = 'School Portal - Login';
 $cssFile = 'login.css';
-require_once 'includes/header.php';
+require_once '../includes/header.php';
 ?>
 
 <img src="assets/images/logo.png" alt="School Logo" class="logo">
