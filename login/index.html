@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Hostel Management System</title>
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -32,21 +32,21 @@
         <h2>What Collage To Choose?</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <img src="assets/images/ktdi-logo.jpg" style="width: 100px; height: auto;">
+                <img src="../assets/ktdi-logo.jpg" style="width: 100px; height: auto;">
                 <h3>Kolej Tun Dr.Ismail</h3>
 				<p><i class="fas fa-envelope"></i> hostel@college.edu</p>
                 <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
                 <p>Manage your hostel application anytime, anywhere.</p>
             </div>
             <div class="feature-card">
-                <img src="assets/images/ktc-logo.png" style="width: 100px; height: auto;">
+                <img src="../assets/ktc-logo.png" style="width: 100px; height: auto;">
                 <h3>Kolej Tuanku Cancelor</h3>
 				<p><i class="fas fa-envelope"></i> hostel@college.edu</p>
                 <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
                 <p>Your data is protected with enterprise-grade security.</p>
             </div>
             <div class="feature-card">
-                <img src="assets/images/krp-logo.png" style="width: 100px; height: auto;">
+                <img src="../assets/krp-logo.png" style="width: 100px; height: auto;">
                 <h3>Kolej Rahman Putra</h3>
 				<p><i class="fas fa-envelope"></i> hostel@college.edu</p>
                 <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
@@ -72,7 +72,7 @@
             <div class="quick-links">
                 <h3>Quick Links</h3>
                 <a href="login.php">Student Login</a>
-                <a href="register.php">New Registration</a>
+                <a href="register.php">New Registration</a> 
                 <a href="#">FAQs</a>
             </div>
         </div>
@@ -80,5 +80,24 @@
             &copy; 2023 College Hostel System. All rights reserved.
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+        
+            document.querySelectorAll('.feature-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+        </script>
+        
 </body>
 </html>
