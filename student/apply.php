@@ -27,7 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Student Application Form</title>
   <link rel="stylesheet" href="../css/apply.css" />
-  <link rel="stylesheet" href="../css/style.css">
+  <!-- botpres chatbot  -->
+   <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
+   <script src="https://files.bpcontent.cloud/2025/06/27/07/20250627072905-7RCE1TQ0.js" defer></script>   
 </head>
 <body>
 
@@ -63,6 +65,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button type="submit" class="submit-btn">Submit Application</button>
   </form>
 </div>
-<?php include 'chatbot.php'; ?>
 </body>
 </html>

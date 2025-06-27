@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quota Active Dashboard</title>
   <link rel="stylesheet" href="../css/student-dashboard.css" />
-<!-- <link rel="stylesheet" href="../css/style.css" /> -->
 
+  <!-- botpres chatbot  -->
+   <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
+   <script src="https://files.bpcontent.cloud/2025/06/27/07/20250627072905-7RCE1TQ0.js" defer></script>  
 </head>
 <body>
 
@@ -65,6 +67,5 @@
     </section>
   </main>
 </div>
-<?php include 'chatbot.php'; ?>
 </body>
 </html>
