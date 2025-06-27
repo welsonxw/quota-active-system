@@ -37,7 +37,7 @@ $cssFile = 'login.css';
 require_once '../includes/header.php';
 ?>
 
-<img src="assets/images/logo.png" alt="School Logo" class="logo">
+<img src="../assets/logo.png" alt="School Logo" class="logo">
 
 <div class="login-container">
     <div class="login-header">
@@ -98,4 +98,4 @@ require_once '../includes/header.php';
     });
 </script>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../includes/footer.php'; ?>
