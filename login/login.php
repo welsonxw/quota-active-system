@@ -1,101 +1,76 @@
 <?php
-require_once('../includes/auth.php');
+session_start();
+require_once '../includes/db_student(localhost).php';
 
-if (isLoggedIn()) {
-    if (isAdmin()) {
-        header("Location: admin-dashboard.php");
+$loginError = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+
+    if (empty($email) || empty($password)) {
+        $loginError = "Please fill in all fields.";
     } else {
-        header("Location: student-dashboard.php");
-    }
-    exit();
-}
+        // Fetch from student table
+        $sql = "SELECT * FROM student WHERE email = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-$error = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $userType = $_POST['user_type'] ?? 'student';
-
-    if (!empty($email) && !empty($password)) {
-        if (authenticateUser($email, $password, $userType)) {
-            if ($userType === 'admin') {
-                header("Location: admin-dashboard.php");
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+            if (password_verify($password, $user['password'])) {
+                $_SESSION['student_id'] = $user['id'];
+                $_SESSION['student_name'] = $user['fullname'];
+                header("Location: ../student/dashboard.php");
+                exit;
             } else {
-                header("Location: student-dashboard.php");
+                $loginError = "Incorrect password.";
             }
-            exit();
         } else {
-            $error = 'Invalid credentials. Please try again.';
+            $loginError = "No account found with that email.";
         }
-    } else {
-        $error = 'Please enter both email and password.';
-    }
-}
 
-$pageTitle = 'School Portal - Login';
-$cssFile = 'login.css';
-require_once '../includes/header.php';
+        $stmt->close();
+    }
+
+    $mysqli->close();
+}
 ?>
 
-<img src="../assets/logo.png" alt="School Logo" class="logo">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Quota Active System</h2>
+            <div class="toggle-buttons">
+                <button class="active">Student</button>
+                <a href="../admin/admin_login.php"><button>Admin</button></a>
+            </div>
 
-<div class="login-container">
-    <div class="login-header">
-       
-		 
-		
-        <h2>Quota Active System</h2>
+            <?php if (!empty($loginError)) : ?>
+                <p class="error"><?= htmlspecialchars($loginError) ?></p>
+            <?php endif; ?>
+
+            <form method="post">
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Password</label>
+                <input type="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p>Don't have an account? <a href="register.php">Register as student</a></p>
+        </div>
     </div>
-    
-    <?php if (!empty($error)): ?>
-        <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
-    <?php endif; ?>
-    
-    <form method="POST" action="login.php">
-        <div class="user-type-selector">
-            <button type="button" id="studentBtn" class="user-type-btn active">Student</button>
-            <button type="button" id="adminBtn" class="user-type-btn">Admin</button>
-            <input type="hidden" name="user_type" id="userType" value="student">
-        </div>
-        
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        
-        <button type="submit" class="login-btn">Login</button>
-    </form>
-    
-    <div class="register-link" id="registerLink">
-        Don't have an account? <a href="register.php">Register as student</a>
-    </div>
-</div>
-
-<script>
-    // User type selection
-    const studentBtn = document.getElementById('studentBtn');
-    const adminBtn = document.getElementById('adminBtn');
-    const userTypeInput = document.getElementById('userType');
-    const registerLink = document.getElementById('registerLink');
-    
-    studentBtn.addEventListener('click', function() {
-        studentBtn.classList.add('active');
-        adminBtn.classList.remove('active');
-        userTypeInput.value = 'student';
-        registerLink.innerHTML = 'Don\'t have an account? <a href="register.php">Register as student</a>';
-    });
-    
-    adminBtn.addEventListener('click', function() {
-        adminBtn.classList.add('active');
-        studentBtn.classList.remove('active');
-        userTypeInput.value = 'admin';
-        registerLink.innerHTML = 'Need admin access? <a href="mailto:admin@school.edu">Contact administrator</a>';
-    });
-</script>
-
-<?php require_once '../includes/footer.php'; ?>
+</body>
+</html>

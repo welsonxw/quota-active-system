@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/db_student.php';
+require_once '../includes/db_student(localhost).php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullname = $_POST['fullname'];
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt = $conn->prepare("INSERT INTO students (fullname, email, password) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO student (fullname, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $fullname, $email, $hashedPassword);
 
         if ($stmt->execute()) {
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Student Registration</title>
-  <link rel="stylesheet" href="../css/register.css"/>
+<link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
   <div class="register-container">
