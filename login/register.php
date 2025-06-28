@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/db_student(localhost).php';
+require_once '../includes/db_studentlocal.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullname = $_POST['fullname'];

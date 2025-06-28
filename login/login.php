@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../includes/db_student(localhost).php';
+require_once '../includes/db_studentlocal.php';
 
 $loginError = '';
 

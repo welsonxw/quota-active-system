@@ -1,69 +1,54 @@
 <?php
-// apply.php — handles form + file upload (you can add database logic if needed)
+include '../includes/db_studentlocal.php'; // if the file is in an "includes" folder one level up
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $responses = [];
-    for ($i = 1; $i <= 5; $i++) {
-        $responses["q$i"] = $_POST["q$i"] ?? '';
+$questions = [];
+$sql = "SELECT * FROM questions";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $questions[] = $row;
     }
-
-    if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] === UPLOAD_ERR_OK) {
-        $uploadedFile = $_FILES['pdf_file'];
-        $fileName = basename($uploadedFile['name']);
-        $uploadPath = "uploads/" . $fileName;
-        move_uploaded_file($uploadedFile['tmp_name'], $uploadPath);
-        // echo "Uploaded to: $uploadPath";
-    }
-
-    // You can now save to DB or redirect
-    // header("Location: success.php");
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Application Form</title>
-  <link rel="stylesheet" href="../css/apply.css" />
-  <!-- botpres chatbot  -->
-   <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
-   <script src="https://files.bpcontent.cloud/2025/06/27/07/20250627072905-7RCE1TQ0.js" defer></script>   
+    <meta charset="UTF-8">
+    <title>Student Application Form</title>
+    <link rel="stylesheet" href="../css/apply.css"> <!-- Adjust path if needed -->
 </head>
 <body>
-
 <div class="form-container">
-  <h1>Student Application Form</h1>
+    <h1>Student Application Form</h1>
+    <form action="apply.php" method="post" enctype="multipart/form-data">
+        <?php foreach ($questions as $index => $q): ?>
+            <div class="question-card">
+                <label for="question<?= $q['id'] ?>">Question <?= $index + 1 ?>: <?= htmlspecialchars($q['question_text']) ?></label>
+                <div class="radio-options">
+                    <div class="radio-option">
+                        <input type="radio" name="question[<?= $q['id'] ?>]" value="Did not participate" id="q<?= $q['id'] ?>_1">
+                        <label for="q<?= $q['id'] ?>_1">Did not participate</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="question[<?= $q['id'] ?>]" value="Participate" id="q<?= $q['id'] ?>_2">
+                        <label for="q<?= $q['id'] ?>_2">Participate</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="question[<?= $q['id'] ?>]" value="Crew" id="q<?= $q['id'] ?>_3">
+                        <label for="q<?= $q['id'] ?>_3">Crew</label>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
 
-  <form action="" method="post" enctype="multipart/form-data">
-    <?php for ($i = 1; $i <= 5; $i++): ?>
-      <div class="question-card">
-        <label for="q<?= $i ?>">Question <?= $i ?>:</label>
-        <div class="radio-options">
-          <div class="radio-option">
-            <input type="radio" id="q<?= $i ?>_1" name="q<?= $i ?>" value="did_not_participate" required>
-            <label for="q<?= $i ?>_1">Did not participate</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" id="q<?= $i ?>_2" name="q<?= $i ?>" value="participate">
-            <label for="q<?= $i ?>_2">Participate</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" id="q<?= $i ?>_3" name="q<?= $i ?>" value="crew">
-            <label for="q<?= $i ?>_3">Crew</label>
-          </div>
+        <div class="question-card">
+            <label for="supporting_file">Upload PDF File:</label>
+            <input type="file" name="supporting_file" accept=".pdf,.jpg,.jpeg">
         </div>
-      </div>
-    <?php endfor; ?>
 
-    <div class="question-card">
-      <label for="pdf_file">Upload PDF File:</label>
-      <input type="file" name="pdf_file" id="pdf_file" accept=".pdf" required />
-    </div>
-
-    <button type="submit" class="submit-btn">Submit Application</button>
-  </form>
+        <button type="submit" class="submit-btn">Submit Application</button>
+    </form>
 </div>
 </body>
 </html>
