@@ -1,3 +1,11 @@
+
+<?php
+session_start();
+echo "Session ID: " . session_id();
+$_SESSION['test_value'] = 'working';
+
+include '../includes/db_studentlocal.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,8 +27,8 @@
     <nav>
       <ul class="nav-list">
         <li class="nav-item active">🏠 Dashboard</li>
-        <li class="nav-item">📝 Apply</li>
-        <li class="nav-item">📈 Status</li>
+        <li class="nav-item"><a href="apply.php" class="nav-link">📝 Apply</a></li>
+        <li class="nav-item"><a href="status.php" class="nav-link">📈 Status</a></li>
         <li class="nav-item">💬 Chatbot</li>
       </ul>
     </nav>

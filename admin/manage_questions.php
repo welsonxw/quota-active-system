@@ -1,5 +1,5 @@
 <?php
-require_once('../includes/db_student(localhost).php');
+require_once('../includes/db_studentlocal.php');
 
 // Add new question
 if (isset($_POST['add'])) {
@@ -13,7 +13,7 @@ if (isset($_POST['add'])) {
 // Delete question
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $mysqli->query("DELETE FROM questions WHERE id = $id");
+    $mysqli->query("DELETE FROM questions WHERE question_id = $id");
 }
 
 // Fetch all questions
@@ -58,11 +58,11 @@ $questions = $mysqli->query("SELECT * FROM questions");
         </tr>
         <?php while ($q = $questions->fetch_assoc()): ?>
         <tr>
-            <td><?= $q['id'] ?></td>
+            <td><?= $q['question_id'] ?></td>
             <td><?= htmlspecialchars($q['question_text']) ?></td>
             <td><?= $q['question_type'] ?></td>
             <td>
-                <a href="?delete=<?= $q['id'] ?>" onclick="return confirm('Delete this question?')">Delete</a>
+                <a href="?delete=<?= $q['question_id'] ?>" onclick="return confirm('Delete this question?')">Delete</a>
             </td>
         </tr>
         <?php endwhile; ?>

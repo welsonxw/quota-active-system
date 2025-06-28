@@ -20,8 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
+ 
             if (password_verify($password, $user['password'])) {
-                $_SESSION['student_id'] = $user['id'];
+                $_SESSION['student_id'] = $user['student_id'];
                 $_SESSION['student_name'] = $user['fullname'];
                 header("Location: ../student/dashboard.php");
                 exit;
@@ -37,6 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $mysqli->close();
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -48,27 +51,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="login-container">
-        <div class="login-box">
+        <div class="login-header">
             <h2>Quota Active System</h2>
-            <div class="toggle-buttons">
-                <button class="active">Student</button>
-                <a href="../admin/admin_login.php"><button>Admin</button></a>
+        </div>
+
+       <div class="user-type-selector">
+  <button class="user-type-btn active">Student</button>
+  <a href="../admin/admin_login.php">
+    <button type="button" class="user-type-btn">Admin</button>
+  </a>
+</div>
+
+
+        <?php if (!empty($loginError)) : ?>
+            <div class="error-message"><?= htmlspecialchars($loginError) ?></div>
+        <?php endif; ?>
+
+        <form method="post">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
             </div>
 
-            <?php if (!empty($loginError)) : ?>
-                <p class="error"><?= htmlspecialchars($loginError) ?></p>
-            <?php endif; ?>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+            </div>
 
-            <form method="post">
-                <label>Email</label>
-                <input type="email" name="email" required>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
 
-                <label>Password</label>
-                <input type="password" name="password" required>
-
-                <button type="submit">Login</button>
-            </form>
-
+        <div class="register-link">
             <p>Don't have an account? <a href="register.php">Register as student</a></p>
         </div>
     </div>
