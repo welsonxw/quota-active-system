@@ -1,8 +1,7 @@
 
 <?php
 session_start();
-echo "Session ID: " . session_id();
-$_SESSION['test_value'] = 'working';
+
 
 include '../includes/db_studentlocal.php';
 ?>

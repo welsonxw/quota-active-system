@@ -1,24 +1,18 @@
 <?php
 // view_applications.php
 require_once __DIR__ . '/../includes/db.php';
-$statusFilter = $_GET['status'] ?? '';
-$kolejFilter = $_GET['kolej'] ?? '';
+$sql = "SELECT 
+            applications.*, 
+            student.matrix_no, 
+            student.fullname, 
+            student.college, 
+            student.year, 
+            student.status 
+        FROM applications 
+        INNER JOIN student 
+        ON applications.student_id = student.student_id";
 
-$sql = "SELECT * FROM application WHERE 1=1";
-$params = [];
-if ($statusFilter !== '') {
-    $sql .= " AND status = ?";
-    $params[] = $statusFilter;
-}
-if ($kolejFilter !== '') {
-    $sql .= " AND college = ?";
-    $params[] = $kolejFilter;
-}
-$stmt = $conn->prepare($sql);
-if (!empty($params)) {
-    $types = str_repeat('s', count($params));
-    $stmt->bind_param($types, ...$params);
-}
+$stmt = $mysqli->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
@@ -81,9 +75,9 @@ $result = $stmt->get_result();
             <?php if ($result->num_rows > 0): while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?= htmlspecialchars($row['matrix_no']) ?></td>
-                    <td><?= htmlspecialchars($row['name']) ?></td>
+                    <td><?= htmlspecialchars($row['fullname']) ?></td>
                     <td><?= htmlspecialchars($row['college']) ?></td>
-                    <td><?= htmlspecialchars($row['year_of_study']) ?></td>
+                    <td><?= htmlspecialchars($row['year']) ?></td>
                     <td><?= htmlspecialchars(ucfirst($row['status'])) ?></td>
                     <td><a href="application_detail.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-info">View</a></td>
                 </tr>

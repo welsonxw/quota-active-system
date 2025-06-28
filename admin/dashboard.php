@@ -1,6 +1,6 @@
 <?php
 // admin/dashboard.php
-require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/db1.php';
 
 $total = $conn->query("SELECT COUNT(*) as count FROM application")->fetch_assoc()['count'];
 $pending = $conn->query("SELECT COUNT(*) as count FROM application WHERE status='pending'")->fetch_assoc()['count'];

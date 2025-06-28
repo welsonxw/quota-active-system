@@ -61,11 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $uploadPath
     );
 
-  /*  if ($stmt->execute()) {
-        echo "Application submitted successfully!";
+    if ($stmt->execute()) {
+       // echo "Application submitted successfully!";
     } else {
         echo "Error: " . $stmt->error;
-    }*/
+    }
 
     $stmt->close();
 }
