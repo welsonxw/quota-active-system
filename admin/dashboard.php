@@ -1,24 +1,24 @@
 <?php
 // admin/dashboard.php
-require_once __DIR__ . '/../includes/db1.php';
+require_once __DIR__ . '/../includes/db.php';
 
-$total = $conn->query("SELECT COUNT(*) as count FROM application")->fetch_assoc()['count'];
-$pending = $conn->query("SELECT COUNT(*) as count FROM application WHERE status='pending'")->fetch_assoc()['count'];
-$approved = $conn->query("SELECT COUNT(*) as count FROM application WHERE status='approved'")->fetch_assoc()['count'];
-$rejected = $conn->query("SELECT COUNT(*) as count FROM application WHERE status='rejected'")->fetch_assoc()['count'];
+$total = $mysqli->query("SELECT COUNT(*) as count FROM student")->fetch_assoc()['count'];
+$pending = $mysqli->query("SELECT COUNT(*) as count FROM student WHERE status='pending'")->fetch_assoc()['count'];
+$approved = $mysqli->query("SELECT COUNT(*) as count FROM student WHERE status='approved'")->fetch_assoc()['count'];
+$rejected = $mysqli->query("SELECT COUNT(*) as count FROM student WHERE status='rejected'")->fetch_assoc()['count'];
 
-$monthlyData = $conn->query("SELECT MONTH(submitted_at) AS month, COUNT(*) AS total FROM application GROUP BY MONTH(submitted_at)");
+$monthlyData = $mysqli->query("SELECT MONTH(submitted_at) AS month, COUNT(*) AS total FROM applications GROUP BY MONTH(submitted_at)");
 $monthCounts = array_fill(1, 12, 0); // Initialize array with 12 months (1-12) set to 0
 while ($row = $monthlyData->fetch_assoc()) {
     $monthCounts[(int)$row['month']] = $row['total'];
 }
 $monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-$yearData = $conn->query("SELECT year_of_study, COUNT(*) AS total FROM application GROUP BY year_of_study");
+$yearData = $mysqli->query("SELECT year, COUNT(*) AS total FROM student GROUP BY year");
 $yearLabels = [];
 $yearCounts = [];
 while ($row = $yearData->fetch_assoc()) {
-    $yearLabels[] = "Year " . $row['year_of_study'];
+    $yearLabels[] = "Year " . $row['year'];
     $yearCounts[] = $row['total'];
 }
 ?>
@@ -38,7 +38,7 @@ while ($row = $yearData->fetch_assoc()) {
         <h2 class="mb-4">Admin Dashboard</h2>
         <div class="row mb-4">
             <div class="col-md-3">
-                <div class="card bg-primary text-white p-3">Total Applications: <?= $total ?></div>
+                <div class="card bg-primary text-white p-3">Total students: <?= $total ?></div>
             </div>
             <div class="col-md-3">
                 <div class="card bg-warning text-white p-3">Pending: <?= $pending ?></div>
@@ -53,13 +53,13 @@ while ($row = $yearData->fetch_assoc()) {
         <div class="row">
             <div class="col-md-6">
                 <div class="card p-3">
-                    <h5 class="text-primary">Monthly Application Trend</h5>
+                    <h5 class="text-primary">Monthly student Trend</h5>
                     <canvas id="areaChart"></canvas>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card p-3">
-                    <h5 class="text-primary">Applications by Year of Study</h5>
+                    <h5 class="text-primary">students by Year of Study</h5>
                     <canvas id="barChart"></canvas>
                 </div>
             </div>
@@ -72,7 +72,7 @@ while ($row = $yearData->fetch_assoc()) {
             data: {
                 labels: <?= json_encode($monthLabels) ?>,
                 datasets: [{
-                    label: 'Applications',
+                    label: 'students',
                     data: <?= json_encode(array_values($monthCounts)) ?>,
                     borderColor: '#0057b8',
                     backgroundColor: 'rgba(0, 87, 184, 0.2)',

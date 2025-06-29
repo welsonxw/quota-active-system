@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($username === $default_username && $password === $default_password) {
         $_SESSION['admin_logged_in'] = true;
-        header("Location: /quota_aktif/admin/dashboard.php");
+        header("Location: /quota-active-system/admin/dashboard.php");
 
         exit;
     } else {
