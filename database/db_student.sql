@@ -186,7 +186,11 @@ ALTER TABLE applications ADD COLUMN merit INT DEFAULT 0;
 
 -- adding gender to applications table
 ALTER TABLE applications 
-ADD COLUMN status VARCHAR(20) DEFAULT 'pending';
+ADD COLUMN status VARCHAR(20) DEFAULT 'pending';\
+
+-- drop status colum from student table 
+ALTER TABLE student DROP COLUMN status;
+
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

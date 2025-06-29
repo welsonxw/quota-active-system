@@ -6,7 +6,7 @@ $message = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $criteria = $_POST['criteria'] ?? '';
     if ($criteria) {
-        $stmt = $conn->prepare("UPDATE config SET value=? WHERE name='quota_criteria'");
+        $stmt = $mysqli->prepare("UPDATE config SET value=? WHERE name='quota_criteria'");
         $stmt->bind_param("s", $criteria);
         $stmt->execute();
         $stmt->close();
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$result = $conn->query("SELECT value FROM config WHERE name='quota_criteria'");
+$result = $mysqli->query("SELECT value FROM config WHERE name='quota_criteria'");
 $row = $result->fetch_assoc();
 $current = $row ? htmlspecialchars($row['value']) : '';
 ?>
