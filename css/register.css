@@ -145,3 +145,24 @@ body::before {
     font-weight: 500;
     text-decoration: underline;
 }
+
+.custom-select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  appearance: none; /* Removes default arrow in some browsers */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'16'%20height%3D'16'%20fill%3D'gray'%20viewBox%3D'0%200%2016%2016'%3E%3Cpath%20d%3D'M1.5%205.5l6%206%206-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+}
+
+.custom-select:focus {
+  border-color: #0066ff;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+  outline: none;
+}
