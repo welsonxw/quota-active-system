@@ -39,7 +39,6 @@ $result = $stmt->get_result();
     <link href="../assets/css/custom.css" rel="stylesheet">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
