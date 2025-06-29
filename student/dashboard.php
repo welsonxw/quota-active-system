@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include '../includes/db_studentlocal.php';
@@ -17,9 +16,45 @@ if ($result && $row = $result->fetch_assoc()) {
   <title>Quota Active Dashboard</title>
   <link rel="stylesheet" href="../css/student-dashboard.css" />
 
-  <!-- botpres chatbot  -->
-   <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
-   <script src="https://files.bpcontent.cloud/2025/06/27/07/20250627072905-7RCE1TQ0.js" defer></script>  
+  <style>
+    .fixed-dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .fixed-dashboard-grid .criteria {
+      grid-row: 1 / span 2;
+    }
+
+    .fixed-dashboard-grid .college {
+      grid-column: 2 / 3;
+      grid-row: 1;
+    }
+
+    .fixed-dashboard-grid .status {
+      grid-column: 2 / 3;
+      grid-row: 2;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .fixed-dashboard-grid {
+        display: block;
+      }
+      .fixed-dashboard-grid .criteria,
+      .fixed-dashboard-grid .college,
+      .fixed-dashboard-grid .status {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+
+  <!-- botpress chatbot -->
+  <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2025/06/27/07/20250627072905-7RCE1TQ0.js" defer></script>
 </head>
 <body>
 
@@ -46,16 +81,15 @@ if ($result && $row = $result->fetch_assoc()) {
     </header>
 
     <!-- Grid Section -->
-    <section class="card-grid">
-      <!-- Left Column -->
-       <div class="card info">
-    <h3>📋 Application Criteria</h3>
-    <p><?= nl2br(htmlspecialchars($criteria_text)) ?></p>
-  </div>
-</section>
+    <section class="fixed-dashboard-grid">
+      <!-- Grid 1: Criteria -->
+      <div class="card criteria">
+        <h3>📋 Application Criteria</h3>
+        <p><?= nl2br(htmlspecialchars($criteria_text)) ?></p>
+      </div>
 
-      <!-- Top Right -->
-      <div class="card choices">
+      <!-- Grid 2: Choose College -->
+      <div class="card college">
         <h3>🎓 Choose College</h3>
         <div class="college-buttons">
           <button>KTC</button>
@@ -65,7 +99,7 @@ if ($result && $row = $result->fetch_assoc()) {
         </div>
       </div>
 
-      <!-- Bottom Right -->
+      <!-- Grid 3: Application Status -->
       <div class="card status">
         <h3>📊 Application Status</h3>
         <p>Status: <strong class="pending">Pending</strong></p>
