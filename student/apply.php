@@ -21,9 +21,9 @@ if ($result && $result->num_rows > 0) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $answers = $_POST['question'] ?? [];
+    // $gender = $_POST['gender'];
 
- 
-    $q_values = array_fill(0, 6, ''); 
+    $q_values = array_fill(0, 6, '');
     $i = 0;
     foreach ($answers as $qid => $ans) {
         if ($i < 6) {
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
 
     if ($stmt->execute()) {
-       // echo "Application submitted successfully!";
+        // echo "Application submitted successfully!";
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -73,42 +73,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Student Application Form</title>
     <link rel="stylesheet" href="../css/apply.css">
 </head>
+
 <body>
-<div class="form-container">
-    <h1>Student Application Form</h1>
-    <form action="apply.php" method="post" enctype="multipart/form-data">
-        <?php foreach ($questions as $index => $q): ?>
-            <div class="question-card">
-                <label for="question<?= $q['question_id'] ?>">Question <?= $index + 1 ?>: <?= htmlspecialchars($q['question_text']) ?></label>
-                <div class="radio-options">
-                    <div class="radio-option">
-                        <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Did not participate" id="q<?= $q['question_id'] ?>_1" required>
-                        <label for="q<?= $q['question_id'] ?>_1">Did not participate</label>
+    <div class="form-container">
+        <h1>Student Application Form</h1>
+        <form action="apply.php" method="post" enctype="multipart/form-data">
+            <?php foreach ($questions as $index => $q): ?>
+                <!-- <div class="question-card">
+                    <label for="gender">Gender:</label>
+                    <div class="radio-options">
+                        <div class="radio-option">
+                            <input type="radio" name="gender" value="male" id="gender_male" required>
+                            <label for="gender_male">Male</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="gender" value="female" id="gender_female">
+                            <label for="gender_female">Female</label>
+                        </div>
                     </div>
-                    <div class="radio-option">
-                        <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Participate" id="q<?= $q['question_id'] ?>_2">
-                        <label for="q<?= $q['question_id'] ?>_2">Participate</label>
-                    </div>
-                    <div class="radio-option">
-                        <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Crew" id="q<?= $q['question_id'] ?>_3">
-                        <label for="q<?= $q['question_id'] ?>_3">Crew</label>
+                </div> -->
+
+                <div class="question-card">
+                    <label for="question<?= $q['question_id'] ?>">Question <?= $index + 1 ?>: <?= htmlspecialchars($q['question_text']) ?></label>
+                    <div class="radio-options">
+                        <div class="radio-option">
+                            <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Did not participate" id="q<?= $q['question_id'] ?>_1" required>
+                            <label for="q<?= $q['question_id'] ?>_1">Did not participate</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Participate" id="q<?= $q['question_id'] ?>_2">
+                            <label for="q<?= $q['question_id'] ?>_2">Participate</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Crew" id="q<?= $q['question_id'] ?>_3">
+                            <label for="q<?= $q['question_id'] ?>_3">Crew</label>
+                        </div>
                     </div>
                 </div>
+            <?php endforeach; ?>
+
+            <div class="question-card">
+                <label for="supporting_file">Upload PDF File:</label>
+                <input type="file" name="pdf_file" accept=".pdf,.jpg,.jpeg">
             </div>
-        <?php endforeach; ?>
 
-        <div class="question-card">
-            <label for="supporting_file">Upload PDF File:</label>
-            <input type="file" name="pdf_file" accept=".pdf,.jpg,.jpeg">
-        </div>
-
-        <button type="submit" class="submit-btn">Submit Application</button>
-    </form>
-</div>
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </div>
 </body>
+
 </html>

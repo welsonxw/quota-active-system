@@ -184,6 +184,11 @@ COMMIT;
 -- Adding merit column to applications table
 ALTER TABLE applications ADD COLUMN merit INT DEFAULT 0;
 
+-- adding gender to applications table
+ALTER TABLE applications 
+ADD COLUMN status VARCHAR(20) DEFAULT 'pending';
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

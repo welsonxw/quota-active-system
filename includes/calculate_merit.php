@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/db.php';
 
-$result = $mysqli->query("SELECT * FROM applications");
+$result = $conn->query("SELECT * FROM applications");
 
 while ($row = $result->fetch_assoc()) {
     $merit = 0;
@@ -23,7 +23,7 @@ while ($row = $result->fetch_assoc()) {
     }
 
     // Update merit in the database
-    $stmt = $mysqli->prepare("UPDATE applications SET merit = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE applications SET merit = ? WHERE id = ?");
     $stmt->bind_param("ii", $merit, $row['id']);
     $stmt->execute();
 }
