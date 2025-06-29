@@ -1,8 +1,8 @@
 <?php
 // admin/rankings.php
 require_once __DIR__ . '/../includes/db.php';
-$male = $conn->query("SELECT * FROM application WHERE gender='male' AND status='approved' ORDER BY merit DESC");
-$female = $conn->query("SELECT * FROM application WHERE gender='female' AND status='approved' ORDER BY merit DESC");
+$male = $mysqli->query("SELECT * FROM applications WHERE gender='male' AND status='approved' ORDER BY merit DESC");
+$female = $mysqli->query("SELECT * FROM applications WHERE gender='female' AND status='approved' ORDER BY merit DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
