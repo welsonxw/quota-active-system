@@ -1,9 +1,13 @@
 
 <?php
 session_start();
-
-
 include '../includes/db_studentlocal.php';
+$result = $mysqli->query("SELECT value FROM config WHERE name = 'quota_criteria'");
+$criteria_text = '';
+
+if ($result && $row = $result->fetch_assoc()) {
+    $criteria_text = $row['value'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,15 +48,11 @@ include '../includes/db_studentlocal.php';
     <!-- Grid Section -->
     <section class="card-grid">
       <!-- Left Column -->
-      <div class="card info">
-        <h3>📋 Application Criteria</h3>
-        <ul>
-          <li>Minimum 2 club activities</li>
-          <li>Upload certificate or proof</li>
-          <li>Apply to only one college</li>
-          <li>Matrix number must be valid</li>
-        </ul>
-      </div>
+       <div class="card info">
+    <h3>📋 Application Criteria</h3>
+    <p><?= nl2br(htmlspecialchars($criteria_text)) ?></p>
+  </div>
+</section>
 
       <!-- Top Right -->
       <div class="card choices">
