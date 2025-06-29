@@ -69,6 +69,7 @@ if ($result && $row = $result->fetch_assoc()) {
         <li class="nav-item"><a href="status.php" class="nav-link">📈 Status</a></li>
         <li class="nav-item">💬 Chatbot</li>
         <li class="nav-item"> <a href="profile.php" class="nav-link">👤Profile</a></li> 
+        <li class="nav-item"><a class="nav-link text-danger" href="logout.php">🚪Logout</a></li>
       </ul>
     </nav>
   </aside>

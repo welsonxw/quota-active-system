@@ -234,3 +234,17 @@ textarea[name="criteria"] {
     box-sizing: border-box;
 }
 
+.logout-section {
+    margin-top: auto;
+}
+
+.logout-link {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}

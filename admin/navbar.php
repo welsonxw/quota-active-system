@@ -8,7 +8,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Left side links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link <?= $current_page == 'dashboard.php' ? 'active' : '' ?>" href="dashboard.php">Dashboard</a>
@@ -24,6 +26,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= $current_page == 'manage_questions.php' ? 'active' : '' ?>" href="manage_questions.php">Edit/Manage Questions</a>
+                </li>
+            </ul>
+
+            <!-- Right side logout -->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="admin_logout.php">Logout</a>
                 </li>
             </ul>
         </div>
