@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2025 at 06:26 AM
+-- Generation Time: Jun 29, 2025 at 08:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,6 +83,7 @@ CREATE TABLE `student` (
   `year` int(4) NOT NULL,
   `college` varchar(100) NOT NULL,
   `fullname` varchar(100) NOT NULL,
+  `gender` enum('Male','Female','Select your gender','') NOT NULL DEFAULT 'Select your gender',
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending'
@@ -92,8 +93,8 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `matrix_no`, `year`, `college`, `fullname`, `email`, `password`, `status`) VALUES
-(1, 'A23CS0121', 2, 'KTDI', 'Muhammad Amirun', 'muhammadamirunirfan@gmail.com', '$2y$10$fPz0XI7Bw68Gd8Uzj/siTe7SysHLyQ9cvbWcnfj.PqkCAsyp7Lt8.', 'pending');
+INSERT INTO `student` (`student_id`, `matrix_no`, `year`, `college`, `fullname`, `gender`, `email`, `password`, `status`) VALUES
+(1, 'A23CS0121', 2, 'KTDI', 'Muhammad Amirun', 'Male', 'muhammadamirunirfan@gmail.com', '$2y$10$fPz0XI7Bw68Gd8Uzj/siTe7SysHLyQ9cvbWcnfj.PqkCAsyp7Lt8.', 'pending');
 
 -- --------------------------------------------------------
 
