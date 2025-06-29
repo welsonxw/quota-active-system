@@ -3,22 +3,24 @@ require_once '../includes/db_studentlocal.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullname = $_POST['fullname'];
+    $gender = $_POST['gender'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm = $_POST['confirm_password'];
+    
 
     if ($password !== $confirm) {
         $error = "Passwords do not match.";
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt = $mysqli->prepare("INSERT INTO student (fullname, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $fullname, $email, $hashedPassword);
+        $stmt = $mysqli->prepare("INSERT INTO student (fullname, email, password, gender) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $fullname, $email, $hashedPassword, $gender);
 
         if ($stmt->execute()) {
             $success = "Registration successful! You can now <a href='login.php'>Login</a>";
         } else {
-            $error = "Error: " . $conn->error;
+            $error = "Error: " . $mysqli->error;
         }
 
         $stmt->close();
@@ -53,6 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="fullname">Full Name</label>
         <input type="text" name="fullname" required />
       </div>
+
+<div class="form-group">
+  <label for="gender">Gender</label>
+  <select name="gender" id="gender" class="custom-select" required>
+    <option value="" disabled selected>Select your gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+</div>
+
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" name="email" required />

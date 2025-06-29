@@ -7,7 +7,8 @@ $sql = "SELECT
             student.fullname, 
             student.college, 
             student.year, 
-            student.status 
+            student.status,
+            student.gender
         FROM applications 
         INNER JOIN student 
         ON applications.student_id = student.student_id";
@@ -65,6 +66,7 @@ $result = $stmt->get_result();
             <tr>
                 <th>Matrix No</th>
                 <th>Name</th>
+                <th>Gender</th>
                 <th>Kolej</th>
                 <th>Year</th>
                 <th>Status</th>
@@ -76,6 +78,7 @@ $result = $stmt->get_result();
                 <tr>
                     <td><?= htmlspecialchars($row['matrix_no']) ?></td>
                     <td><?= htmlspecialchars($row['fullname']) ?></td>
+                    <td><?= htmlspecialchars($row['gender']) ?></td>
                     <td><?= htmlspecialchars($row['college']) ?></td>
                     <td><?= htmlspecialchars($row['year']) ?></td>
                     <td><?= htmlspecialchars(ucfirst($row['status'])) ?></td>
