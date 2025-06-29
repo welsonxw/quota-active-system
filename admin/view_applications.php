@@ -39,20 +39,7 @@ $result = $stmt->get_result();
     <link href="../assets/css/custom.css" rel="stylesheet">
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="dashboard.php">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link active" href="view_applications.php">View Applications</a></li>
-        <li class="nav-item"><a class="nav-link" href="rankings.php">Rankings</a></li>
-        <li class="nav-item"><a class="nav-link" href="edit_criteria.php">Edit Criteria</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
+<?php include 'navbar.php'; ?>
 <div class="container mt-4">
     <h2>Student Applications</h2>
     <form method="GET" class="row mb-4">
@@ -70,31 +57,35 @@ $result = $stmt->get_result();
     </form>
 
     <table class="table table-bordered">
-        <thead class="table-dark">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Matrics No.</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Year</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result->num_rows > 0):
+            $index = 1;
+            while ($row = $result->fetch_assoc()):
+        ?>
             <tr>
-                <th>Matrics No.</th>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Year</th>
-                <th>Status</th>
-                <th>Action</th>
+                <td><?= $index++ ?></td>
+                <td><?= htmlspecialchars($row['matrix_no']) ?></td>
+                <td><?= htmlspecialchars($row['fullname']) ?></td>
+                <td><?= htmlspecialchars($row['gender']) ?></td>
+                <td><?= htmlspecialchars($row['year']) ?></td>
+                <td><?= htmlspecialchars(ucfirst($row['status'])) ?></td>
             </tr>
-        </thead>
-        <tbody>
-            <?php if ($result->num_rows > 0): while ($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['matrix_no']) ?></td>
-                    <td><?= htmlspecialchars($row['fullname']) ?></td>
-                    <td><?= htmlspecialchars($row['gender']) ?></td>
-                    <td><?= htmlspecialchars($row['year']) ?></td>
-                    <td><?= htmlspecialchars(ucfirst($row['status'])) ?></td>
-                    <td><a href="application_detail.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-info">View</a></td>
-                </tr>
-            <?php endwhile; else: ?>
-                <tr><td colspan="6">No applications found.</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+        <?php endwhile; else: ?>
+            <tr><td colspan="6">No applications found.</td></tr>
+        <?php endif; ?>
+    </tbody>
+</table>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
