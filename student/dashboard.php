@@ -29,6 +29,7 @@ include '../includes/db_studentlocal.php';
         <li class="nav-item"><a href="apply.php" class="nav-link">📝 Apply</a></li>
         <li class="nav-item"><a href="status.php" class="nav-link">📈 Status</a></li>
         <li class="nav-item">💬 Chatbot</li>
+        <li class="nav-item"> <a href="profile.php" class="nav-link">👤Profile</a></li> 
       </ul>
     </nav>
   </aside>
