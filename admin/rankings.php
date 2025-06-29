@@ -1,8 +1,18 @@
 <?php
 // admin/rankings.php
 require_once __DIR__ . '/../includes/db.php';
-$male = $mysqli->query("SELECT * FROM applications WHERE gender='male' AND status='approved' ORDER BY merit DESC");
-$female = $mysqli->query("SELECT * FROM applications WHERE gender='female' AND status='approved' ORDER BY merit DESC");
+$male = $mysqli->query("SELECT s.matrix_no, s.fullname, a.merit 
+                        FROM student s 
+                        JOIN applications a ON s.student_id = a.student_id 
+                        WHERE s.gender='Male' 
+                        ORDER BY a.merit DESC");
+
+$female = $mysqli->query("SELECT s.matrix_no, s.fullname, a.merit 
+                          FROM student s 
+                          JOIN applications a ON s.student_id = a.student_id 
+                          WHERE s.gender='Female' 
+                          ORDER BY a.merit DESC");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +45,7 @@ $female = $mysqli->query("SELECT * FROM applications WHERE gender='female' AND s
                                 <tr>
                                     <td><?= $i++ ?></td>
                                     <td><?= htmlspecialchars($row['matrix_no']) ?></td>
-                                    <td><?= htmlspecialchars($row['name']) ?></td>
+                                    <td><?= htmlspecialchars($row['fullname']) ?></td>
                                     <td><?= htmlspecialchars($row['merit']) ?></td>
                                 </tr>
                             <?php endwhile; ?>
@@ -63,7 +73,7 @@ $female = $mysqli->query("SELECT * FROM applications WHERE gender='female' AND s
                                 <tr>
                                     <td><?= $i++ ?></td>
                                     <td><?= htmlspecialchars($row['matrix_no']) ?></td>
-                                    <td><?= htmlspecialchars($row['name']) ?></td>
+                                    <td><?= htmlspecialchars($row['fullname']) ?></td>
                                     <td><?= htmlspecialchars($row['merit']) ?></td>
                                 </tr>
                             <?php endwhile; ?>

@@ -1,32 +1,31 @@
 <?php
-require_once __DIR__ . '/../includes/db.php';
+require_once '../includes/db.php';
 
 $result = $mysqli->query("SELECT * FROM applications");
+if (!$result) {
+    die("Query failed: " . $mysqli->error);
+}
 
 while ($row = $result->fetch_assoc()) {
     $merit = 0;
 
-    // Calculate score from q1 to q6
+    // Loop through questions q1 to q6
     for ($i = 1; $i <= 6; $i++) {
-        $response = strtolower($row["q$i"]);
-        switch ($response) {
-            case 'participant':
-                $merit += 10;
-                break;
-            case 'crew':
-                $merit += 20;
-                break;
-            case 'none':
-            default:
-                $merit += 0;
+        $answer = $row["q$i"];
+        if ($answer == 'Participate') {
+            $merit += 5;
+        } elseif ($answer == 'Crew') {
+            $merit += 10;
         }
+        // Did not participate = 0, so no addition
     }
 
-    // Update merit in the database
-    $stmt = $mysqli->prepare("UPDATE applications SET merit = ? WHERE id = ?");
-    $stmt->bind_param("ii", $merit, $row['id']);
-    $stmt->execute();
+    // Update the merit value in the database
+    $id = $row['id'];
+    $update = $mysqli->query("UPDATE applications SET merit = $merit WHERE id = $id");
+    if (!$update) {
+        echo "Failed to update merit for ID $id: " . $mysqli->error . "<br>";
+    }
 }
-
-echo "✅ Merit scores updated successfully.";
 ?>
+

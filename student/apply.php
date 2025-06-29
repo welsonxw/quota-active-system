@@ -21,7 +21,6 @@ if ($result && $result->num_rows > 0) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $answers = $_POST['question'] ?? [];
-    // $gender = $_POST['gender'];
 
     $q_values = array_fill(0, 6, '');
     $i = 0;
@@ -62,7 +61,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
 
     if ($stmt->execute()) {
-        // echo "Application submitted successfully!";
+        include '../admin/calculate_merit.php';
+        $_SESSION['submission_success'] = true;
+        header("Location: apply.php"); // redirect to avoid resubmission
+        exit();
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -73,59 +75,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Student Application Form</title>
     <link rel="stylesheet" href="../css/apply.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
-    <div class="form-container">
-        <h1>Student Application Form</h1>
-        <form action="apply.php" method="post" enctype="multipart/form-data">
-            <?php foreach ($questions as $index => $q): ?>
-                <!-- <div class="question-card">
-                    <label for="gender">Gender:</label>
-                    <div class="radio-options">
-                        <div class="radio-option">
-                            <input type="radio" name="gender" value="male" id="gender_male" required>
-                            <label for="gender_male">Male</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" name="gender" value="female" id="gender_female">
-                            <label for="gender_female">Female</label>
-                        </div>
-                    </div>
-                </div> -->
+<?php if (isset($_SESSION['submission_success'])): ?>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Your application was submitted successfully!',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+    });
+</script>
+<?php unset($_SESSION['submission_success']); ?>
+<?php endif; ?>
 
-                <div class="question-card">
-                    <label for="question<?= $q['question_id'] ?>">Question <?= $index + 1 ?>: <?= htmlspecialchars($q['question_text']) ?></label>
-                    <div class="radio-options">
-                        <div class="radio-option">
-                            <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Did not participate" id="q<?= $q['question_id'] ?>_1" required>
-                            <label for="q<?= $q['question_id'] ?>_1">Did not participate</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Participate" id="q<?= $q['question_id'] ?>_2">
-                            <label for="q<?= $q['question_id'] ?>_2">Participate</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Crew" id="q<?= $q['question_id'] ?>_3">
-                            <label for="q<?= $q['question_id'] ?>_3">Crew</label>
-                        </div>
+<div class="form-container">
+    <h1>Student Application Form</h1>
+    <form action="apply.php" method="post" enctype="multipart/form-data">
+        <?php foreach ($questions as $index => $q): ?>
+            <div class="question-card">
+                <label for="question<?= $q['question_id'] ?>">Question <?= $index + 1 ?>: <?= htmlspecialchars($q['question_text']) ?></label>
+                <div class="radio-options">
+                    <div class="radio-option">
+                        <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Did not participate" id="q<?= $q['question_id'] ?>_1" required>
+                        <label for="q<?= $q['question_id'] ?>_1">Did not participate</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Participate" id="q<?= $q['question_id'] ?>_2">
+                        <label for="q<?= $q['question_id'] ?>_2">Participate</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="question[<?= $q['question_id'] ?>]" value="Crew" id="q<?= $q['question_id'] ?>_3">
+                        <label for="q<?= $q['question_id'] ?>_3">Crew</label>
                     </div>
                 </div>
-            <?php endforeach; ?>
-
-            <div class="question-card">
-                <label for="supporting_file">Upload PDF File:</label>
-                <input type="file" name="pdf_file" accept=".pdf,.jpg,.jpeg">
             </div>
+        <?php endforeach; ?>
 
-            <button type="submit" class="submit-btn">Submit Application</button>
-        </form>
-    </div>
+        <div class="question-card">
+            <label for="supporting_file">Upload PDF File:</label>
+            <input type="file" name="pdf_file" accept=".pdf,.jpg,.jpeg">
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Application</button>
+    </form>
+</div>
+<!-- Chatbot integration -->
+<script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/06/27/07/20250627072905-7RCE1TQ0.js" defer></script>  
 </body>
-
 </html>
