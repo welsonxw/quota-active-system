@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt = $conn->prepare("INSERT INTO student (fullname, email, password) VALUES (?, ?, ?)");
+        $stmt = $mysqli->prepare("INSERT INTO student (fullname, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $fullname, $email, $hashedPassword);
 
         if ($stmt->execute()) {
