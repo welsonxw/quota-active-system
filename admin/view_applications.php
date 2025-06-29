@@ -36,11 +36,13 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <title>Quota System - View Applications</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
 </head>
 <body>
+    <?php include 'navbar.php'; ?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Quota System Admin</a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="dashboard.php">Dashboard</a></li>
@@ -95,5 +97,7 @@ $result = $stmt->get_result();
         </tbody>
     </table>
 </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

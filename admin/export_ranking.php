@@ -11,10 +11,20 @@ $output = fopen("php://output", "w");
 fputcsv($output, ['Matrix No', 'Name', 'College', 'Year of Study', 'Merit', 'Status']);
 
 // Fetch ranking data
-$sql = "SELECT matrix_no, name, college, year_of_study, merit, status FROM application ORDER BY merit DESC";
-$result = mysqli_query($conn, $sql);
+$sql = "SELECT 
+            student.matrix_no, 
+            student.fullname, 
+            student.college, 
+            student.year, 
+            applications.q1 AS merit, 
+            student.status 
+        FROM student
+        INNER JOIN applications ON student.student_id = applications.student_id
+        ORDER BY merit DESC";
 
+$result = mysqli_query($mysqli, $sql);
 // Write each row to the CSV
+
 while ($row = mysqli_fetch_assoc($result)) {
     fputcsv($output, $row);
 }
