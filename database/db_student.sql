@@ -79,7 +79,7 @@ INSERT INTO `questions` (`question_id`, `question_text`, `question_type`) VALUES
 
 CREATE TABLE `student` (
   `student_id` int(11) NOT NULL,
-  `matrix_no` varchar(20) NOT NULL,
+  `matrix_no` int(4) NOT NULL,
   `year` int(4) NOT NULL,
   `college` varchar(100) NOT NULL,
   `fullname` varchar(100) NOT NULL,
