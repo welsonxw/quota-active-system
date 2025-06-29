@@ -22,6 +22,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <li class="nav-item">
                     <a class="nav-link <?= $current_page == 'edit_criteria.php' ? 'active' : '' ?>" href="edit_criteria.php">Edit Criteria</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $current_page == 'manage_questions.php' ? 'active' : '' ?>" href="manage_questions.php">Edit/Manage Questions</a>
+                </li>
             </ul>
         </div>
     </div>

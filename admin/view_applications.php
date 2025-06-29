@@ -40,18 +40,8 @@ $result = $stmt->get_result();
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="dashboard.php">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link active" href="view_applications.php">View Applications</a></li>
-        <li class="nav-item"><a class="nav-link" href="rankings.php">Rankings</a></li>
-        <li class="nav-item"><a class="nav-link" href="edit_criteria.php">Edit Criteria</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+   <?php include 'navbar.php'; ?>
+
 
 <div class="container mt-4">
     <h2>Student Applications</h2>
