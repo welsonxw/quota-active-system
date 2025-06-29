@@ -19,7 +19,20 @@ if ($result && $result->num_rows > 0) {
     }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Check if student already applied
+$alreadyApplied = false;
+$check = $mysqli->prepare("SELECT COUNT(*) FROM applications WHERE student_id = ?");
+$check->bind_param("i", $_SESSION['student_id']);
+$check->execute();
+$check->bind_result($count);
+$check->fetch();
+$check->close();
+
+if ($count > 0) {
+    $alreadyApplied = true;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !$alreadyApplied) {
     $answers = $_POST['question'] ?? [];
 
     $q_values = array_fill(0, 6, '');
@@ -82,6 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+
 <?php if (isset($_SESSION['submission_success'])): ?>
 <script>
     Swal.fire({
@@ -94,6 +108,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 <?php unset($_SESSION['submission_success']); ?>
 <?php endif; ?>
+
+<?php if ($alreadyApplied): ?>
+<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Already Submitted',
+        text: 'You have already submitted your application. You cannot apply again.',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+    });
+</script>
+<?php else: ?>
 
 <div class="form-container">
     <h1>Student Application Form</h1>
@@ -126,8 +152,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" class="submit-btn">Submit Application</button>
     </form>
 </div>
+
+<?php endif; ?>
+
 <!-- Chatbot integration -->
 <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2025/06/27/07/20250627072905-7RCE1TQ0.js" defer></script>  
+<script src="https://files.bpcontent.cloud/2025/06/27/07/20250627072905-7RCE1TQ0.js" defer></script>
 </body>
 </html>

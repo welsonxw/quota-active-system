@@ -191,6 +191,8 @@ ADD COLUMN status VARCHAR(20) DEFAULT 'pending';\
 -- drop status colum from student table 
 ALTER TABLE student DROP COLUMN status;
 
+-- only one student can apply for one application
+ALTER TABLE applications ADD CONSTRAINT uc_student UNIQUE (student_id);
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

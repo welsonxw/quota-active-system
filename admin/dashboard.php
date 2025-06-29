@@ -2,10 +2,10 @@
 // admin/dashboard.php
 require_once __DIR__ . '/../includes/db.php';
 
-$total = $mysqli->query("SELECT COUNT(*) as count FROM student")->fetch_assoc()['count'];
-$pending = $mysqli->query("SELECT COUNT(*) as count FROM student WHERE status='pending'")->fetch_assoc()['count'];
-$approved = $mysqli->query("SELECT COUNT(*) as count FROM student WHERE status='approved'")->fetch_assoc()['count'];
-$rejected = $mysqli->query("SELECT COUNT(*) as count FROM student WHERE status='rejected'")->fetch_assoc()['count'];
+$total = $mysqli->query("SELECT COUNT(*) as count FROM applications")->fetch_assoc()['count'];
+$pending = $mysqli->query("SELECT COUNT(*) as count FROM applications WHERE status='pending'")->fetch_assoc()['count'];
+$approved = $mysqli->query("SELECT COUNT(*) as count FROM applications WHERE status='approved'")->fetch_assoc()['count'];
+$rejected = $mysqli->query("SELECT COUNT(*) as count FROM applications WHERE status='rejected'")->fetch_assoc()['count'];
 
 $monthlyData = $mysqli->query("SELECT MONTH(submitted_at) AS month, COUNT(*) AS total FROM applications GROUP BY MONTH(submitted_at)");
 $monthCounts = array_fill(1, 12, 0); // Initialize array with 12 months (1-12) set to 0
