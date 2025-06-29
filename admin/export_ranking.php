@@ -8,16 +8,16 @@ header('Content-Disposition: attachment;filename=ranking_list.csv');
 $output = fopen("php://output", "w");
 
 // Write column headers
-fputcsv($output, ['Matrix No', 'Name', 'College', 'Year of Study', 'Merit', 'Status']);
+fputcsv($output, ['Matrix No', 'Name', 'Gender', 'Year of Study', 'Merit', 'Status']);
 
 // Fetch ranking data
 $sql = "SELECT 
             student.matrix_no, 
             student.fullname, 
-            student.college, 
+            student.gender, 
             student.year, 
-            applications.q1 AS merit, 
-            student.status 
+            applications.merit, 
+            applications.status 
         FROM student
         INNER JOIN applications ON student.student_id = applications.student_id
         ORDER BY merit DESC";
