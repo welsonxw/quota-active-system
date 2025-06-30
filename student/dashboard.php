@@ -29,53 +29,6 @@ if ($student_id) {
   <title>Quota Active Dashboard</title>
   <link rel="stylesheet" href="../css/student-dashboard.css" />
 
-  <style>
-    .fixed-dashboard-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .fixed-dashboard-grid .criteria {
-      grid-row: 1 / span 2;
-    }
-
-    .fixed-dashboard-grid .college {
-      grid-column: 2 / 3;
-      grid-row: 1;
-    }
-
-    .fixed-dashboard-grid .status {
-      grid-column: 2 / 3;
-      grid-row: 2;
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      .fixed-dashboard-grid {
-        display: block;
-      }
-      .fixed-dashboard-grid .criteria,
-      .fixed-dashboard-grid .college,
-      .fixed-dashboard-grid .status {
-        margin-bottom: 20px;
-      }
-    }
-
-    /* Status colors */
-    .pending {
-      color: orange;
-    }
-    .approved {
-      color: green;
-    }
-    .rejected {
-      color: red;
-    }
-  </style>
-
   <!-- botpress chatbot -->
   <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
   <script src="https://files.bpcontent.cloud/2025/06/27/07/20250627072905-7RCE1TQ0.js" defer></script>
@@ -88,10 +41,10 @@ if ($student_id) {
     <h2 class="logo">QuotaActive</h2>
     <nav>
       <ul class="nav-list">
-        <li class="nav-item active">🏠 Dashboard</li>
-        <li class="nav-item">💬 Chatbot</li>
-        <li class="nav-item"> <a href="profile.php" class="nav-link">👤Profile</a></li> 
-        <li class="nav-item"><a class="nav-link text-danger" href="logout.php">🚪Logout</a></li>
+        <li class="nav-item active">Dashboard</li>
+        <li class="nav-item">Chatbot</li>
+        <li class="nav-item"> <a href="profile.php" class="nav-link">Profile</a></li> 
+        <li class="nav-item"><a class="nav-link text-danger" href="logout.php">Logout</a></li>
       </ul>
     </nav>
   </aside>
