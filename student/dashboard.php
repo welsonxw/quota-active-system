@@ -114,12 +114,27 @@ if ($student_id) {
       <!-- Grid 2: Choose College -->
       <div class="card college">
         <h3>🎓 Choose College</h3>
-        <div class="college-buttons">
-          <button>KTC</button>
-          <button>KTDI</button>
-          <button>KRP</button>
-          <button>K9K10</button>
-        </div>
+<div class="college-buttons">
+  <form method="POST" action="apply.php">
+    <input type="hidden" name="college" value="KTC">
+    <button type="submit">KTC</button>
+  </form>
+
+  <form method="POST" action="apply.php">
+    <input type="hidden" name="college" value="KTDI">
+    <button type="submit">KTDI</button>
+  </form>
+
+  <form method="POST" action="apply.php">
+    <input type="hidden" name="college" value="KRP">
+    <button type="submit">KRP</button>
+  </form>
+
+  <form method="POST" action="apply.php">
+    <input type="hidden" name="college" value="K9K10">
+    <button type="submit">K9K10</button>
+  </form>
+</div>
       </div>
 
       <!-- Grid 3: Application Status -->
