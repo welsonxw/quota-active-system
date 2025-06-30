@@ -85,10 +85,9 @@ if ($student_id) {
         <div class="card college">
           <h3><i class="fas fa-school"></i> College Information</h3>
           <div class="college-buttons">
-            <button>KTC</button>
-            <button>KTDI</button>
-            <button>KRP</button>
-            <button>K9K10</button>
+<a href="https://studentaffairs.utm.my/kolejtuankucanselor/"><button>KTC</button></a>
+<a href="https://studentaffairs.utm.my/ktdi/"><button>KTDI</button></a>
+<a href="https://studentaffairs.utm.my/kolejrahmanputra/"><button>KRP</button></a>
           </div>
         </div>
 
