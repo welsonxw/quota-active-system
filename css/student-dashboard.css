@@ -363,4 +363,24 @@ textarea[name="criteria"] {
   transition: all 0.3s ease;
 }
 
+.sidebar-logo-img {
+  max-width: 100%;
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.sidebar {
+  width: 250px;
+  overflow: hidden;
+  text-align: center;
+}
+
+
+
+
+
+
 

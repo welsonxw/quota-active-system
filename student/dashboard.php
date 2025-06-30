@@ -46,14 +46,14 @@ if ($student_id) {
 </head>
 
 <body>
-
   <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2 class="logo">QuotaActive</h2>
-      <div class="profile-avatar-icon">
-        <i class="fas fa-user-circle"></i>
+      <div class="sidebar-logo text-center my-4">
+        <img src="../assets/webug2.png" alt="QAWS Logo" class="sidebar-logo-img">
       </div>
+
+      <i class="fas fa-user-circle profile-avatar-icon"></i>
 
       <nav>
         <ul class="nav-list">
@@ -61,7 +61,6 @@ if ($student_id) {
           <li class="nav-item"><a href="apply.php" class="nav-link"><i class="fas fa-edit"></i> Apply</a></li>
           <li class="nav-item"><a href="profile.php" class="nav-link"><i class="fas fa-user"></i> Profile</a></li>
           <li class="nav-item"><a class="nav-link text-danger" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-
         </ul>
       </nav>
     </aside>
@@ -73,28 +72,26 @@ if ($student_id) {
         <p>Here is your application overview.</p>
       </header>
 
-      <!-- Grid Section -->
       <section class="fixed-dashboard-grid">
-        <!-- Grid 1: Criteria -->
+        <!-- Application Criteria -->
         <div class="card criteria">
           <h3><i class="fas fa-clipboard-list"></i> Application Criteria</h3>
           <p><?= nl2br(htmlspecialchars($criteria_text)) ?></p>
         </div>
 
-        <!-- Grid 2: Choose College -->
+        <!-- College Info -->
         <div class="card college">
           <h3><i class="fas fa-school"></i> College Information</h3>
           <div class="college-buttons">
-<a href="https://studentaffairs.utm.my/kolejtuankucanselor/"><button>KTC</button></a>
-<a href="https://studentaffairs.utm.my/ktdi/"><button>KTDI</button></a>
-<a href="https://studentaffairs.utm.my/kolejrahmanputra/"><button>KRP</button></a>
+            <a href="https://studentaffairs.utm.my/kolejtuankucanselor/"><button>KTC</button></a>
+            <a href="https://studentaffairs.utm.my/ktdi/"><button>KTDI</button></a>
+            <a href="https://studentaffairs.utm.my/kolejrahmanputra/"><button>KRP</button></a>
           </div>
         </div>
 
-        <!-- Grid 3: Application Status -->
+        <!-- Application Status -->
         <div class="card status">
           <h3><i class="fas fa-clipboard-check"></i> Application Status</h3>
-
           <?php if ($application): ?>
             <?php
             $status = strtolower($application['status']);
@@ -105,11 +102,7 @@ if ($student_id) {
               default    => 'black'
             };
             ?>
-            <p>Status:
-              <strong style="color: <?= $statusColor ?>;">
-                <?= ucfirst(htmlspecialchars($application['status'])) ?>
-              </strong>
-            </p>
+            <p>Status: <strong style="color: <?= $statusColor ?>;"><?= ucfirst(htmlspecialchars($application['status'])) ?></strong></p>
             <p>College: <strong>KTDI</strong></p>
             <p>Submitted: <strong><?= $application['submitted_at'] ? 'Yes' : 'No' ?></strong></p>
           <?php else: ?>
@@ -118,7 +111,8 @@ if ($student_id) {
         </div>
       </section>
     </main>
-  </div>
+  </div> <!-- moved here: closes .dashboard-container correctly -->
 </body>
+
 
 </html>
