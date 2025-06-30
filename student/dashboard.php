@@ -66,7 +66,7 @@ if ($student_id) {
 
       <!-- Grid 2: Choose College -->
       <div class="card college">
-        <h3>Choose College</h3>
+        <h3>🎓 Choose College</h3>
         <div class="college-buttons">
           <button>KTC</button>
           <button>KTDI</button>
