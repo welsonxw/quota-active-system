@@ -93,13 +93,11 @@ if ($student_id) {
       <h2 class="logo">QuotaActive</h2>
       <nav>
         <ul class="nav-list">
-          <li class="nav-item active">🏠 Dashboard</li>
-          <li class="nav-item"><a href="apply.php" class="nav-link">📝 Apply</a></li>
-          <li class="nav-item"><a href="status.php" class="nav-link">📈 Status</a></li>
-
-          <li class="nav-item">💬 Chatbot</li>
-          <li class="nav-item"> <a href="profile.php" class="nav-link">👤Profile</a></li>
-          <li class="nav-item"><a class="nav-link text-danger" href="logout.php">🚪Logout</a></li>
+          <li class="nav-item active">Dashboard</li>
+          <li class="nav-item"><a href="apply.php" class="nav-link">Apply</a></li>
+          <!-- <li class="nav-item">💬 Chatbot</li> -->
+          <li class="nav-item"> <a href="profile.php" class="nav-link">Profile</a></li>
+          <li class="nav-item"><a class="nav-link text-danger" href="logout.php">Logout</a></li>
         </ul>
       </nav>
     </aside>
@@ -115,13 +113,13 @@ if ($student_id) {
       <section class="fixed-dashboard-grid">
         <!-- Grid 1: Criteria -->
         <div class="card criteria">
-          <h3>📋 Application Criteria</h3>
+          <h3>Application Criteria</h3>
           <p><?= nl2br(htmlspecialchars($criteria_text)) ?></p>
         </div>
 
         <!-- Grid 2: Choose College -->
         <div class="card college">
-          <h3>🎓 Choose College</h3>
+          <h3>Choose College</h3>
           <div class="college-buttons">
             <button>KTC</button>
             <button>KTDI</button>
@@ -132,7 +130,7 @@ if ($student_id) {
 
         <!-- Grid 3: Application Status -->
         <div class="card status">
-          <h3>📊 Application Status</h3>
+          <h3>Application Status</h3>
           <?php if ($application): ?>
             <?php
             $status = strtolower($application['status']);
@@ -145,7 +143,7 @@ if ($student_id) {
             ?>
             <p>Status:
               <strong style="color: <?= $statusColor ?>;">
-                <?= htmlspecialchars($application['status']) ?>
+                <?= ucfirst(htmlspecialchars($application['status'])) ?>
               </strong>
             </p>
             <p>College: <strong>KTDI</strong></p>
