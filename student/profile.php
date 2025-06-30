@@ -29,10 +29,10 @@ $student = $result->fetch_assoc();
     <h2 class="logo">QuotaActive</h2>
     <nav>
       <ul class="nav-list">
-        <li class="nav-item"><a href="dashboard.php" class="nav-link">🏠 Dashboard</a></li>
-        <li class="nav-item">💬 Chatbot</li>
-        <li class="nav-item active"> <a href="profile.php" class="nav-link">👤Profile</a></li> 
-        <li class="nav-item"><a class="nav-link text-danger" href="logout.php">🚪Logout</a></li>
+        <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+        <li class="nav-item">Chatbot</li>
+        <li class="nav-item active"> <a href="profile.php" class="nav-link">Profile</a></li> 
+        <li class="nav-item"><a class="nav-link text-danger" href="logout.php">Logout</a></li>
 
       </ul>
     </nav>
@@ -47,7 +47,7 @@ $student = $result->fetch_assoc();
    <br>
      
       <div class="profile">
-        <h3>📋 Student Profile</h3>
+        <h3>Student Profile</h3>
  <p><strong>Full Name:</strong> <?= htmlspecialchars($student['fullname']) ?></p>
     <p><strong>Email:</strong> <?= htmlspecialchars($student['email']) ?></p>
     <p><strong>Gender:</strong> <?= htmlspecialchars($student['gender']) ?></p>
