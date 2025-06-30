@@ -49,7 +49,7 @@ $result = $stmt->get_result();
             <select name="status" class="form-select">
                 <option value="">All Status</option>
                 <option value="pending" <?= $statusFilter == 'pending' ? 'selected' : '' ?>>Pending</option>
-                <option value="approved" <?= $statusFilter == 'approved' ? 'selected' : '' ?>>Approved</option>
+                <option value="accepted" <?= $statusFilter == 'accepted' ? 'selected' : '' ?>>Accepted</option>
                 <option value="rejected" <?= $statusFilter == 'rejected' ? 'selected' : '' ?>>Rejected</option>
             </select>
         </div>

@@ -57,7 +57,7 @@ if ($student_id) {
 
       <nav>
         <ul class="nav-list">
-          <li class="nav-item active"><i class="fas fa-home"></i> Dashboard</li>
+          <li class="nav-item active"><i class="fas fa-home"></i> Dashboard</a></li>
           <li class="nav-item"><a href="apply.php" class="nav-link"><i class="fas fa-edit"></i> Apply</a></li>
           <li class="nav-item"><a href="profile.php" class="nav-link"><i class="fas fa-user"></i> Profile</a></li>
           <li class="nav-item"><a class="nav-link text-danger" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>

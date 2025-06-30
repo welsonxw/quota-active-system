@@ -4,7 +4,7 @@ require_once __DIR__ . '/../includes/db.php';
 
 $total = $mysqli->query("SELECT COUNT(*) as count FROM applications")->fetch_assoc()['count'];
 $pending = $mysqli->query("SELECT COUNT(*) as count FROM applications WHERE status='pending'")->fetch_assoc()['count'];
-$approved = $mysqli->query("SELECT COUNT(*) as count FROM applications WHERE status='approved'")->fetch_assoc()['count'];
+$approved = $mysqli->query("SELECT COUNT(*) as count FROM applications WHERE status='accepted'")->fetch_assoc()['count'];
 $rejected = $mysqli->query("SELECT COUNT(*) as count FROM applications WHERE status='rejected'")->fetch_assoc()['count'];
 
 $monthlyData = $mysqli->query("SELECT MONTH(submitted_at) AS month, COUNT(*) AS total FROM applications GROUP BY MONTH(submitted_at)");
@@ -44,7 +44,7 @@ while ($row = $yearData->fetch_assoc()) {
                 <div class="card bg-warning text-white p-3">Pending: <?= $pending ?></div>
             </div>
             <div class="col-md-3">
-                <div class="card bg-success text-white p-3">Approved: <?= $approved ?></div>
+                <div class="card bg-success text-white p-3">Accepted: <?= $approved ?></div>
             </div>
             <div class="col-md-3">
                 <div class="card bg-danger text-white p-3">Rejected: <?= $rejected ?></div>

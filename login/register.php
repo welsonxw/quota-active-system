@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <div class="register-container">
     <div class="register-header">
-      <img src="../assets/logo.png" alt="Logo" class="logo" />
       <h2>Student Registration</h2>
       <p>Create your student account</p>
     </div>
@@ -94,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" name="password" required />
-        <div class="password-hint">Minimum 8 characters</div>
+      
       </div>
       <div class="form-group">
         <label for="confirm_password">Confirm Password</label>

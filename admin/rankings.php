@@ -135,15 +135,18 @@ $female = $mysqli->query("SELECT s.matrix_no, s.fullname, a.student_id, a.merit,
                 </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="btn-group-actions">
-                <button type="submit" class="btn btn-success">Update All Status</button>
-                <form method="POST" action="export_ranking.php">
-                    <button type="submit" class="btn btn-primary">Download CSV</button>
-                </form>
-            </div>
-        </form>
-    </div>
+<!-- Action Buttons Centered -->
+<div class="d-flex justify-content-center gap-3 mt-4">
+    <!-- Update Status Form -->
+    <form method="POST" action="update_statuses.php">
+        <button type="submit" class="btn btn-success">Update All Status</button>
+    </form>
+
+    <!-- Export CSV Form -->
+    <form method="POST" action="export_ranking.php">
+        <button type="submit" class="btn btn-primary">Download CSV</button>
+    </form>
+</div>
 
     <script>
         // Function to update class based on dropdown value
@@ -174,10 +177,7 @@ $female = $mysqli->query("SELECT s.matrix_no, s.fullname, a.student_id, a.merit,
         </script>
     <?php endif; ?>
 
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
-
 </html>

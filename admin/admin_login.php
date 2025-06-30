@@ -78,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </style>
 </head>
 <body>
-    <div class="webug-logo">Webug</div>
     <div class="login-container">
         <h2 class="mb-4">UTM COLLEGE ADMINISTRATION</h2>
         <?php if ($message): ?>
@@ -93,9 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="password" class="form-label">Password</label>
 <div class="input-group">
   <input type="password" class="form-control" id="password" name="password" required>
-  <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-    👁️
-  </button>
 </div>
             </div>
             <button type="submit" class="btn btn-custom">Login</button>
