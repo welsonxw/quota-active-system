@@ -278,3 +278,13 @@ textarea[name="criteria"] {
     margin-bottom: 20px;
   }
 }
+
+.pending {
+  color: orange;
+}
+.approved {
+  color: green;
+}
+.rejected {
+  color: red;
+}

@@ -1,11 +1,24 @@
 <?php
 session_start();
 include '../includes/db_studentlocal.php';
-$result = $mysqli->query("SELECT value FROM config WHERE name = 'quota_criteria'");
-$criteria_text = '';
 
+$student_id = $_SESSION['student_id'] ?? null;
+
+// Fetch quota criteria text
+$criteria_text = '';
+$result = $mysqli->query("SELECT value FROM config WHERE name = 'quota_criteria'");
 if ($result && $row = $result->fetch_assoc()) {
     $criteria_text = $row['value'];
+}
+
+// Fetch application info
+$application = null;
+if ($student_id) {
+    $stmt = $mysqli->prepare("SELECT status,  submitted_at FROM applications WHERE student_id = ?");
+    $stmt->bind_param("i", $student_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $application = $result->fetch_assoc();
 }
 ?>
 <!DOCTYPE html>
@@ -49,6 +62,17 @@ if ($result && $row = $result->fetch_assoc()) {
       .fixed-dashboard-grid .status {
         margin-bottom: 20px;
       }
+    }
+
+    /* Status colors */
+    .pending {
+      color: orange;
+    }
+    .approved {
+      color: green;
+    }
+    .rejected {
+      color: red;
     }
   </style>
 
@@ -103,9 +127,26 @@ if ($result && $row = $result->fetch_assoc()) {
       <!-- Grid 3: Application Status -->
       <div class="card status">
         <h3>📊 Application Status</h3>
-        <p>Status: <strong class="pending">Pending</strong></p>
-        <p>College: <strong>KTDI</strong></p>
-        <p>Submitted: <strong>Yes</strong></p>
+        <?php if ($application): ?>
+<?php
+  $status = strtolower($application['status']);
+  $statusColor = match ($status) {
+      'accepted' => 'green',
+      'rejected' => 'red',
+      'pending'  => 'orange',
+      default    => 'black'
+  };
+?>
+<p>Status: 
+  <strong style="color: <?= $statusColor ?>;">
+    <?= htmlspecialchars($application['status']) ?>
+  </strong>
+</p>
+          <p>College: <strong>KTDI</strong></p>
+          <p>Submitted: <strong><?= $application['submitted_at'] ? 'Yes' : 'No' ?></strong></p>
+        <?php else: ?>
+          <p>No application found.</p>
+        <?php endif; ?>
       </div>
     </section>
   </main>
