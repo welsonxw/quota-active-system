@@ -80,10 +80,11 @@ body {
 /* Cards */
 .card {
   background-color: #ffffff;
-  border-radius: 16px;
+  border-radius: 20px; /* More rounded corners */
   padding: 24px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
 }
+
 
 .card h3 {
   margin-bottom: 16px;
@@ -106,7 +107,7 @@ body {
 }
 
 .college-buttons button {
-  background-color: #4b4ddb;
+  background-color: #6772e5;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -117,7 +118,7 @@ body {
 }
 
 .college-buttons button:hover {
-  background-color: #3738b4;
+  background-color: #6772e5;
 }
 
 /* Status */
@@ -322,3 +323,44 @@ textarea[name="criteria"] {
     margin-bottom: 20px;
   }
 }
+
+.card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2c3e50;
+}
+
+.profile-avatar-icon {
+  font-size: 60px;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.college-buttons button {
+  background-color: #4b4ddb;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.college-buttons button:hover {
+  background-color: #3738b4;
+  transform: scale(1.03); /* Subtle hover scale */
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background-color: #3738b4;
+  transform: scale(1.03); /* Nav item hover scale */
+  transition: all 0.3s ease;
+}
+
+
