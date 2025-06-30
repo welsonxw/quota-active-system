@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
     }
 
     // Redirect back with success flag
+    // update_statuses.php
     header("Location: rankings.php?status_updated=1");
     exit;
 } else {

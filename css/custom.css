@@ -1,49 +1,74 @@
 /* assets/css/custom.css */
 body {
-    background-color: #f8f9fa;
+  background-color: #f8f9fa;
 }
 
 .navbar-brand {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .nav-link:hover {
-    color: #ffc107 !important;
+  color: #ffc107 !important;
 }
 
 .card {
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.table th, .table td {
-    vertical-align: middle;
+.table th,
+.table td {
+  vertical-align: middle;
 }
 
 .table-hover tbody tr:hover {
-    background-color: #e9ecef;
+  background-color: #e9ecef;
 }
 
 .btn-primary {
-    background-color: #0057b8;
-    border-color: #0057b8;
+  background-color: #0057b8;
+  border-color: #0057b8;
 }
 
 .btn-primary:hover {
-    background-color: #004494;
-    border-color: #004494;
+  background-color: #004494;
+  border-color: #004494;
 }
 
 .alert {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
-h2, h4 {
-    font-weight: 600;
+h2,
+h4 {
+  font-weight: 600;
 }
 
 @media (max-width: 576px) {
-    .btn {
-        width: 100%;
-    }
+  .btn {
+    width: 100%;
+  }
+}
+
+.status-select.pending {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.status-select.accepted {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.status-select.rejected {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.btn-group-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
