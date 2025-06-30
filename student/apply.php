@@ -20,17 +20,13 @@ if ($result && $result->num_rows > 0) {
 }
 
 // Check if student already applied
-$alreadyApplied = false;
 $check = $mysqli->prepare("SELECT COUNT(*) FROM applications WHERE student_id = ?");
 $check->bind_param("i", $_SESSION['student_id']);
 $check->execute();
 $check->bind_result($count);
 $check->fetch();
 $check->close();
-
-if ($count > 0) {
-    $alreadyApplied = true;
-}
+$alreadyApplied = ($count > 0); // ✅ correctly reflects status
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !$alreadyApplied) {
     $answers = $_POST['question'] ?? [];
@@ -76,8 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$alreadyApplied) {
     if ($stmt->execute()) {
         include '../admin/calculate_merit.php';
         $_SESSION['submission_success'] = true;
-        header("Location: apply.php"); // redirect to avoid resubmission
-        exit();
+        // no PHP header redirect — JS will handle it
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -104,6 +99,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$alreadyApplied) {
         text: 'Your application was submitted successfully!',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'dashboard.php';
+        }
     });
 </script>
 <?php unset($_SESSION['submission_success']); ?>
@@ -117,6 +116,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !$alreadyApplied) {
         text: 'You have already submitted your application. You cannot apply again.',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'dashboard.php';
+        }
     });
 </script>
 <?php else: ?>
