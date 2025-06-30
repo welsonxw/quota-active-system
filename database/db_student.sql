@@ -194,6 +194,10 @@ ALTER TABLE student DROP COLUMN status;
 -- only one student can apply for one application
 ALTER TABLE applications ADD CONSTRAINT uc_student UNIQUE (student_id);
 
+-- drop question_type from questions table
+ALTER TABLE questions DROP COLUMN question_type;
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

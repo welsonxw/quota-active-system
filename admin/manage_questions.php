@@ -2,12 +2,14 @@
 require_once('../includes/db_studentlocal.php');
 
 // Add new question
-if (isset($_POST['add'])) {
-    $text = $_POST['question_text'];
-    $type = $_POST['question_type'];
-    $stmt = $mysqli->prepare("INSERT INTO questions (question_text, question_type) VALUES (?, ?)");
-    $stmt->bind_param("ss", $text, $type);
-    $stmt->execute();
+$added = false;
+if (isset($_POST['question'])) {
+    $text = $_POST['question'];
+    $stmt = $mysqli->prepare("INSERT INTO questions (question_text) VALUES (?)");
+    $stmt->bind_param("s", $text);
+    if ($stmt->execute()) {
+        $added = true;
+    }
 }
 
 // Delete question
@@ -26,60 +28,79 @@ $questions = $mysqli->query("SELECT * FROM questions");
     <meta charset="UTF-8">
     <title>Manage Questions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../assets/css/custom.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <?php include 'navbar.php'; ?>
 
-<div class="container my-5 p-4 bg-white rounded shadow-sm">
-    <h2 class="mb-4">Manage Application Questions</h2>
+<body>
+    <div class="container my-5 p-4 bg-white rounded shadow-sm">
+        <h2 class="mb-4">Manage Application Questions</h2>
 
-    <!-- Form to Add Question -->
-    <form method="POST" class="mb-4">
-        <div class="mb-3">
-            <label for="question" class="form-label">Question:</label>
-            <input type="text" name="question" id="question" class="form-control" required>
-        </div>
+        <!-- Form to Add Question -->
+        <form method="POST" class="mb-4">
+            <div class="mb-3">
+                <label for="question" class="form-label">Question:</label>
+                <input type="text" name="question" id="question" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Question</button>
+        </form>
 
-        <div class="mb-3">
-            <label for="type" class="form-label">Type:</label>
-            <select name="type" id="type" class="form-select" required>
-                <option value="text">Text</option>
-                <option value="textarea">Textarea</option>
-                <option value="radio">Radio</option>
-                <option value="checkbox">Checkbox</option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Add Question</button>
-    </form>
-
-    <!-- Display Questions Table -->
-    <div class="table-responsive">
-        <table class="table table-bordered align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th>ID</th>
-                    <th>Question</th>
-                    <th>Type</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $questions->fetch_assoc()): ?>
+        <!-- Display Questions Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle text-nowrap">
+                <thead class="table-light">
                     <tr>
-                        <td><?= $row['question_id'] ?></td>
-                        <td><?= htmlspecialchars($row['question_text']) ?></td>
-                        <td><?= htmlspecialchars($row['question_type']) ?></td>
-                        <td>
-                            <a href="?delete=<?= $row['question_id'] ?>" class="text-danger text-decoration-none" onclick="return confirm('Are you sure you want to delete this question?')">Delete</a>
-                        </td>
+                        <th style="width: 5%;">#</th>
+                        <th>Question</th>
+                        <th style="width: 10%;">Action</th>
                     </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php $index = 1; ?>
+                    <?php while ($row = $questions->fetch_assoc()): ?>
+                        <tr>
+                            <td><?= $index++ ?></td>
+                            <td><?= htmlspecialchars($row['question_text']) ?></td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="confirmDelete(<?= $row['question_id'] ?>)">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-
+    <!-- pop up delete                     -->
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This question will be permanently deleted.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '?delete=' + id;
+                }
+            });
+        }
+        // pop up success
+        <?php if ($added): ?>
+        Swal.fire({
+            title: 'Success!',
+            text: 'New question added.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+        <?php endif; ?>
+    </script>
 </body>
 </html>

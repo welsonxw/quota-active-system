@@ -38,7 +38,7 @@ while ($row = $yearData->fetch_assoc()) {
         <h2 class="mb-4">Admin Dashboard</h2>
         <div class="row mb-4">
             <div class="col-md-3">
-                <div class="card bg-primary text-white p-3">Total students: <?= $total ?></div>
+                <div class="card bg-primary text-white p-3">Total Applied Students: <?= $total ?></div>
             </div>
             <div class="col-md-3">
                 <div class="card bg-warning text-white p-3">Pending: <?= $pending ?></div>
@@ -53,13 +53,13 @@ while ($row = $yearData->fetch_assoc()) {
         <div class="row">
             <div class="col-md-6">
                 <div class="card p-3">
-                    <h5 class="text-primary">Monthly student Trend</h5>
+                    <h5 class="text-primary">Monthly Students Trend</h5>
                     <canvas id="areaChart"></canvas>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card p-3">
-                    <h5 class="text-primary">students by Year of Study</h5>
+                    <h5 class="text-primary">Registered Students by Year of Study</h5>
                     <canvas id="barChart"></canvas>
                 </div>
             </div>
