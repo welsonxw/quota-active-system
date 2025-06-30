@@ -30,10 +30,10 @@ $student = $result->fetch_assoc();
     <nav>
       <ul class="nav-list">
         <li class="nav-item"><a href="dashboard.php" class="nav-link">🏠 Dashboard</a></li>
-        <li class="nav-item"><a href="apply.php" class="nav-link">📝 Apply</a></li>
-        <li class="nav-item"><a href="status.php" class="nav-link">📈 Status</a></li>
         <li class="nav-item">💬 Chatbot</li>
         <li class="nav-item active"> <a href="profile.php" class="nav-link">👤Profile</a></li> 
+        <li class="nav-item"><a class="nav-link text-danger" href="logout.php">🚪Logout</a></li>
+
       </ul>
     </nav>
   </aside>

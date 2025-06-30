@@ -89,8 +89,6 @@ if ($student_id) {
     <nav>
       <ul class="nav-list">
         <li class="nav-item active">🏠 Dashboard</li>
-        <li class="nav-item"><a href="apply.php" class="nav-link">📝 Apply</a></li>
-        <li class="nav-item"><a href="status.php" class="nav-link">📈 Status</a></li>
         <li class="nav-item">💬 Chatbot</li>
         <li class="nav-item"> <a href="profile.php" class="nav-link">👤Profile</a></li> 
         <li class="nav-item"><a class="nav-link text-danger" href="logout.php">🚪Logout</a></li>
