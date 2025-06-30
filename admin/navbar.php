@@ -29,10 +29,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </li>
             </ul>
 
-            <!-- Right side logout -->
+            <!-- Right side logout button -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-danger" href="admin_logout.php">Logout</a>
+                    <a class="btn btn-outline-danger ms-2" href="admin_logout.php">Logout</a>
                 </li>
             </ul>
         </div>
